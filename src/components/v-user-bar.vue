@@ -1,6 +1,8 @@
 <template>
   <div class="v-user-bar">
-    <v-popup v-if="IS_INFO_POPUP_VISIBLE && !IS_AUTHORIZED_USER" @closePopup="closePopup">
+
+    <v-popup v-if="IS_INFO_POPUP_VISIBLE && !IS_AUTHORIZED_USER" @closePopup="closePopup"
+            >
       <template v-slot:namePopup>
         <h2>Авторизация</h2>
       </template>
@@ -47,7 +49,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["CHECK_USER_FROM_API", "START_AUTHORIZATION"]),
+    ...mapActions(["CHECK_USER_FROM_API", "START_AUTHORIZATION", "REFUSE_AUTHORIZATION"]),
 
     checkUser() {
       console.log(this.user_name);
@@ -55,14 +57,11 @@ export default {
     },
 
     startAuthorization() {
-    
       this.START_AUTHORIZATION()
-      // this.isInfoPopupVisible = !this.isInfoPopupVisible;
     },
 
     closePopup() {
-      this.START_AUTHORIZATION()
-      // this.isInfoPopupVisible = false;
+      this.REFUSE_AUTHORIZATION();
     },
   },
 };

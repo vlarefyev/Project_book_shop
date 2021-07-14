@@ -45,7 +45,6 @@ export default {
     align-items: center;
   }
   &__content {
-    // display: flex;
     justify-content: center;
     align-items: center;
   }

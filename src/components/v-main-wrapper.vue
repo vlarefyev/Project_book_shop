@@ -3,20 +3,14 @@
         <keep-alive>
         <router-view> </router-view>
         </keep-alive>
-
-        <!-- <vAdminForm /> -->
     </div>
 </template>
 
 <script>
 
-    // import vAdminForm from './v-admin-form'
-
 export default {
     name: "v-main-wrapper",
     components: {
-
-        // vAdminForm
         },
     props: {},
     data() {
