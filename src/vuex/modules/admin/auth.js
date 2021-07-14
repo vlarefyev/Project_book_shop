@@ -18,7 +18,6 @@ export default {
                 axios
                 .get(url_to_check_user)
                 .then((response) => {
-                    // console.log(response)
                     commit('IS_USER_NAME', response.data.name)
                     commit('IS_BALANCE', response.data.money)
                     commit('IS_USER_ID', response.data.id)
