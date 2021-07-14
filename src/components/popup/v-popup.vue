@@ -45,7 +45,7 @@ export default {
     align-items: center;
   }
   &__content {
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
   }
@@ -60,6 +60,10 @@ export default {
     padding: 8px;
     color: #fff;
     background: red;
+  }
+
+  .material-icons {
+    cursor: pointer;
   }
 }
 </style>

@@ -3,7 +3,7 @@
         <img class="v-catalog-item__image" :src="product_data.img" alt="">
         <p class="v-catalog-item__name">{{ product_data.name }}</p>
         <p class="v-catalog-item__price">Цена: {{ product_data.price }} Р.</p>
-        <button class="v-catalog-item__add-to-cart-btn btn" @click="addToCart">Add to cart</button>
+        <button class="v-catalog-item__add-to-cart-btn btn" @click="addToCart">В корзину</button>
 
     </div>
 </template>

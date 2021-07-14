@@ -1,10 +1,12 @@
 <template>
   <div class="v-cart">
     <div class="v-catalog__nav-bar">
-    <router-link :to="{ name: 'catalog' }">
-      <div class="v-catalog__link_to_cart">Back to Catalog</div>
-    </router-link>
-  </div>
+      <v-user-bar></v-user-bar>
+      <router-link class="v-catalog__link_to_cart" :to="{ name: 'catalog' }">
+        <div>Вернуться в каталог</div>
+      </router-link>
+    </div>
+
     <p v-if="!cart_data.length">Ваша корзина пуста.</p>
     <v-cart-item
       v-for="(item, index) in cart_data"
@@ -14,8 +16,12 @@
       @increment="increment(index)"
       @decrement="decrement(index)"
     />
+    <button class="get-to-buy btn" v-if="cart_data.length" @click="getToBuy">
+      Купить
+    </button>
+
     <div class="v-cart__total">
-      <p class="total__name">Total:</p>
+      <p class="total__name">Суммарная стоимость:</p>
       <p>{{ cartTotalCost }} Р.</p>
     </div>
   </div>
@@ -23,12 +29,14 @@
 
 <script>
 import vCartItem from "./v-cart-item";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import VUserBar from "./v-user-bar.vue";
 
 export default {
   name: "v-cart",
   components: {
     vCartItem,
+    VUserBar,
   },
   props: {
     cart_data: {
@@ -42,6 +50,7 @@ export default {
     return {};
   },
   computed: {
+    ...mapGetters(["IS_AUTHORIZED_USER"]),
     cartTotalCost() {
       let result = [];
 
@@ -64,6 +73,8 @@ export default {
       "INCREMENT_CART_ITEM",
       "DECREMENT_CART_ITEM",
       "DELETE_FROM_CART",
+      "START_PAYMENT",
+      "START_AUTHORIZATION"
     ]),
     increment(index) {
       this.INCREMENT_CART_ITEM(index);
@@ -73,6 +84,14 @@ export default {
     },
     deleteFromCart(index) {
       this.DELETE_FROM_CART(index);
+    },
+
+    getToBuy() {
+      if (this.IS_AUTHORIZED_USER == true) {
+      this.START_PAYMENT(this.cart_data)
+      } else {
+        this.START_AUTHORIZATION()
+      }
     },
   },
 
@@ -98,6 +117,15 @@ export default {
 
   .total__name {
     margin-right: $margin * 2;
+  }
+
+  .v-catalog__link_to_cart {
+    text-decoration: none;
+    color: blue;
+  }
+
+  .get-to-buy {
+    font-size: 16px;
   }
 }
 </style>

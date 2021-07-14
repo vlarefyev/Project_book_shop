@@ -1,6 +1,7 @@
-import axios from 'axios';
 import Vue from 'vue'
+import axios from 'axios'
 import Vuex from 'vuex'
+import auth from './modules/admin/auth'
 
 Vue.use(Vuex);
 
@@ -76,6 +77,10 @@ let store = new Vuex.Store({
         CART(state) {
             return state.cart;
         }
+    },
+
+    modules: {
+        auth
     }
 });
 
