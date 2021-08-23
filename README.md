@@ -1,3 +1,5 @@
+http://u0574637.isp.regruhosting.ru/
+
 # book_shop
 
 ## Project setup
