@@ -1,4 +1,6 @@
+Working version of the project:
 http://u0574637.isp.regruhosting.ru/
+
 
 # book_shop
 
